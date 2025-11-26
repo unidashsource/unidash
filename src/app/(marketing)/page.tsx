@@ -85,7 +85,7 @@ export default function HomePage() {
               </Button>
               <div className="flex gap-4 text-sm text-white/80">
                 <Link href="/about/schools" className="hover:text-white transition-smooth">
-                  For High Schools
+                  For Nashedis
                 </Link>
                 <Link href="/about/universities" className="hover:text-white transition-smooth">
                   For Universities
