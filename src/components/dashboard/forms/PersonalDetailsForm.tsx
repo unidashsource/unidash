@@ -41,7 +41,7 @@ export function PersonalDetailsForm({ initialData }: { initialData?: any }) {
   const [isSaving, setIsSaving] = useState(false);
 
   // Initialize form
-  const form = useForm<PersonalDetailsFormValues>({
+  const form = useForm({
     resolver: zodResolver(personalDetailsSchema),
     defaultValues: {
       dob: initialData?.dob ? new Date(initialData.dob) : undefined,

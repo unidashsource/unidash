@@ -1,17 +1,17 @@
 import { z } from "zod";
 
 export const personalDetailsSchema = z.object({
-  dob: z.date({
-    required_error: "Date of birth is required.",
-  }),
-  gender: z.enum(["Male", "Female", "Other", "Prefer not to say"], {
-    required_error: "Please select a gender.",
-  }),
-  social_category: z.enum(["General", "SC", "ST", "OBC-NCL", "EWS"], {
-    required_error: "Social Category is required for Indian admissions.",
-  }),
+  // Removed { required_error: ... } to fix build error
+  dob: z.date(), 
+  
+  // Removed custom error map
+  gender: z.enum(["Male", "Female", "Other", "Prefer not to say"]),
+  
+  // Removed custom error map
+  social_category: z.enum(["General", "SC", "ST", "OBC-NCL", "EWS"]),
+  
   nationality: z.string().min(2, "Nationality is required."),
-  aadhar_number: z.string().optional(), // Optional for privacy initially
+  aadhar_number: z.string().optional(),
   address_permanent: z.string().min(10, "Permanent address is too short."),
   address_correspondence: z.string().optional(),
   is_financial_aid_seeker: z.boolean().default(false),
