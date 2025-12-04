@@ -34,7 +34,7 @@ export default async function DashboardLayout({
       {/* 1. TOP NAVIGATION */}
       <DashboardHeader userProfile={profile} signOutAction={signOut} />
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col lg:flex-row">
         {/* 2. CONTEXTUAL SIDEBAR (Changes based on page) */}
         <ContextualSidebar />
 

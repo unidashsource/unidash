@@ -14,6 +14,7 @@ import {
   LogOut
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MobileNav } from "./MobileNav";
 
 export function DashboardHeader({ userProfile, signOutAction }: { userProfile: any, signOutAction: any }) {
   const pathname = usePathname();
@@ -31,13 +32,18 @@ export function DashboardHeader({ userProfile, signOutAction }: { userProfile: a
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-6">
         {/* LEFT: Logo */}
-        <div className="flex items-center gap-2 font-semibold">
+        {/* 1. LEFT: Mobile Menu + Logo */}
+      <div className="flex items-center gap-4">
+        <MobileNav userProfile={userProfile} signOutAction={signOutAction} />
+        
+        <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
           <span className="h-8 w-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-lg">U</span>
           <span className="text-xl tracking-tight hidden md:block">Unidash</span>
-        </div>
+        </Link>
+      </div>
 
         {/* CENTER: Top Navigation */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
