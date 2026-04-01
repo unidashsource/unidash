@@ -9,186 +9,137 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Users, GraduationCap } from "lucide-react";
+import { HelpCircle, FileText, BadgeCheck } from "lucide-react";
 
 export default function FAQPage() {
   const categories = [
     {
-      title: "General",
-      icon: MessageCircle,
+      title: "Platform Overview",
+      icon: HelpCircle,
+      desc: "General mechanics of Unidash",
       questions: [
         {
-          q: "What is Unidash?",
-          a: "Unidash is a centralized application platform for Indian higher education that allows students to apply to multiple universities using a single application profile. We streamline the admissions process for students, schools, and universities."
+          q: "What exactly is Unidash?",
+          a: "Unidash acts as the centralized middleware for Indian university admissions. We provide a single dashboard for students to build a comprehensive applicant profile, and allow them to dispatch that profile to our partnered universities without re-entering redundant data."
         },
         {
-          q: "When will the platform launch?",
-          a: "Unidash is currently in development and we're targeting a launch in early 2025. Students can join our waitlist to receive early access and be notified when the platform goes live."
+          q: "Is Unidash recognized by universities?",
+          a: "Yes. Our partner universities explicitly authorize applications processed through our platform and use our specialized institutional endpoints to securely receive and evaluate applicant data."
         },
         {
-          q: "What are the platform fees?",
-          a: "We're committed to keeping costs minimal for students. Detailed pricing will be announced closer to launch, but our goal is to make the platform accessible to students from all economic backgrounds."
-        },
-        {
-          q: "Which universities will be available on the platform?",
-          a: "We're actively partnering with leading universities across India. Our initial launch will include over 100 universities with plans to expand rapidly. Check our University Search preview for some of our prospective partners."
+          q: "How does the pricing model work?",
+          a: "Unidash is transparent. Core profile creation is free for students. We pass through minor processing fees directly related to application dispatch, ensuring accessibility across all economic backgrounds."
         }
       ]
     },
     {
-      title: "Students & Parents",
-      icon: Users,
+      title: "Data & Security",
+      icon: BadgeCheck,
+      desc: "Privacy operations and compliance",
       questions: [
         {
-          q: "How is my data protected on Unidash?",
-          a: "We use industry-standard encryption and security protocols to protect all student data. Our platform is built with privacy by design, and we comply with all relevant data protection regulations. Your academic and personal information is securely stored and only shared with universities you choose to apply to."
+          q: "How secure is my academic data?",
+          a: "All data transit is protected by strict AES-256 encryption. We utilize enterprise-grade infrastructure. Your academic records are only visible to you, your verified counselor, and explicitly authorized universities."
         },
         {
-          q: "Will all universities accept Unidash applications?",
-          a: "Universities that partner with Unidash will accept applications through our platform. We're working to onboard as many institutions as possible. Students will always be able to see which universities accept Unidash applications before applying."
-        },
-        {
-          q: "Can I still apply directly to universities if I use Unidash?",
-          a: "Absolutely! Unidash is designed to complement, not replace, existing application methods. You can use our platform for some applications and apply directly to others as needed."
-        },
-        {
-          q: "What documents do I need to upload?",
-          a: "Typically, you'll need academic transcripts, identity proof, category certificates (if applicable), and other standard documents. Our platform will guide you through the specific requirements for each university."
+          q: "Will my data be sold to third-party institutions?",
+          a: "Never. Unidash strictly prohibits the selling of applicant data. Universities can only access your profile if you, the applicant, manually initiate an application to them."
         }
       ]
     },
     {
-      title: "Schools & Universities",
-      icon: GraduationCap,
+      title: "Technical Requirements",
+      icon: FileText,
+      desc: "Documents, uploads, and workflows",
       questions: [
         {
-          q: "How does the school portal work?",
-          a: "The Unidash Counselor Portal allows school counselors to manage their student caseloads, upload official documents in bulk, and track application progress. Schools can also generate reports and analytics to inform their counseling strategies."
+          q: "Can I use Unidash alongside direct applications?",
+          a: "Absolutely. Unidash does not impose exclusivity. You can apply via Unidash for our partner institutions and use direct portals for non-partner institutions simultaneously."
         },
         {
-          q: "Is there a cost for schools to use the counselor portal?",
-          a: "The basic counselor portal is complimentary for all schools. We also offer a Pioneer Program with enhanced features and lifetime access for early adopting schools."
-        },
-        {
-          q: "What is the process to become a university partner?",
-          a: "Universities interested in partnering with Unidash can reach out through our contact form or email partnerships@unidash.co.in. We'll schedule a demo and discuss partnership terms, including integration requirements and benefits."
-        },
-        {
-          q: "How does Unidash benefit universities?",
-          a: "Universities gain access to a larger, verified pool of applicants, receive standardized applications that reduce processing time, and get access to rich analytics about their applicant demographics and trends."
+          q: "How are Letters of Recommendation handled?",
+          a: "If a university requires LORs, logic within Unidash prompts you to invite your teachers. Your teachers submit the letter once to Unidash, and we append it securely to all relevant institutional applications automatically."
         }
       ]
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-50 pb-24">
       {/* Hero Section */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-6">
-          <h1>Frequently Asked Questions</h1>
-          <p className="text-xl text-muted-foreground text-balance">
-            Find answers to common questions about Unidash and how we're transforming university admissions in India
+      <section className="bg-white border-b border-slate-200 py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+        <div className="max-w-4xl mx-auto container-padding text-center space-y-6 relative z-10">
+          <h1 className="text-slate-900 font-extrabold tracking-tight text-5xl">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-xl text-slate-600 font-medium max-w-2xl mx-auto text-balance">
+            Comprehensive details on data processing, platform mechanics, and institutional partnerships.
           </p>
         </div>
       </section>
 
-      {/* FAQ Categories */}
-      <section className="section-padding">
-        <div className="max-w-4xl mx-auto container-padding space-y-12">
-          {categories.map((category, categoryIndex) => (
-            <Card key={categoryIndex} className="shadow-medium border-border">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+      {/* Modern Layout for FAQs: Sticky Sidebar + Main Content */}
+      <section className="max-w-7xl mx-auto container-padding mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* Sidebar Nav */}
+          <div className="lg:col-span-4 relative hidden lg:block">
+            <div className="sticky top-32 space-y-4">
+              <h3 className="font-extrabold text-slate-900 text-lg mb-6 uppercase tracking-wider">Categories</h3>
+              {categories.map((c, i) => (
+                <a key={i} href={`#cat-${i}`} className="group block p-4 bg-white border border-slate-200 rounded-xl hover:border-primary hover:shadow-md transition-all duration-300">
+                  <div className="flex items-center space-x-3">
+                    <c.icon className="w-5 h-5 text-slate-400 group-hover:text-primary transition-colors" />
+                    <div>
+                      <div className="font-bold text-slate-800">{c.title}</div>
+                      <div className="text-xs text-slate-500 font-medium mt-0.5">{c.desc}</div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+              
+              <Card className="mt-8 bg-slate-900 text-white border-none shadow-xl">
+                <CardContent className="p-6 space-y-4">
+                  <h4 className="font-bold text-lg">Need Direct Support?</h4>
+                  <p className="text-slate-400 text-sm font-medium">Enterprise partners can reach out for dedicated API integration help.</p>
+                  <Button variant="secondary" className="w-full font-bold">Open Support Ticket</Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Main FAQ Accordions */}
+          <div className="lg:col-span-8 space-y-16">
+            {categories.map((category, categoryIndex) => (
+              <div key={categoryIndex} id={`cat-${categoryIndex}`} className="scroll-mt-32">
+                <div className="flex items-center space-x-3 mb-6 border-b border-slate-200 pb-4">
+                  <div className="w-10 h-10 bg-white border border-slate-200 shadow-sm rounded-lg flex items-center justify-center">
                     <category.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h2 className="text-2xl font-semibold">{category.title}</h2>
+                  <h2 className="text-2xl font-extrabold text-slate-900">{category.title}</h2>
                 </div>
                 
-                <Accordion type="single" collapsible className="space-y-2">
+                <Accordion type="multiple" className="space-y-4">
                   {category.questions.map((faq, index) => (
                     <AccordionItem 
                       key={index} 
                       value={`${categoryIndex}-${index}`}
-                      className="border border-border rounded-lg px-4"
+                      className="bg-white border border-slate-200 rounded-xl px-2 overflow-hidden shadow-sm data-[state=open]:border-primary/30 transition-colors"
                     >
-                      <AccordionTrigger className="text-left font-medium hover:no-underline hover:text-primary transition-smooth">
+                      <AccordionTrigger className="text-left font-bold text-slate-800 hover:no-underline hover:text-primary transition-colors py-5 px-4 text-base">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                      <AccordionContent className="text-slate-600 leading-relaxed font-medium px-4 pb-5 pt-0 text-base">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Additional Resources */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-8">
-          <h2>Still Have Questions?</h2>
-          <p className="text-xl text-muted-foreground">
-            Can&apos;t find what you&apos;re looking for? We&apos;re here to help.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="hover:shadow-medium transition-smooth border-border">
-              <CardContent className="p-6 text-center space-y-4">
-                <MessageCircle className="w-8 h-8 mx-auto text-primary" />
-                <h4 className="font-semibold">Contact Support</h4>
-                <p className="text-sm text-muted-foreground">
-                  Get in touch with our team for personalized assistance
-                </p>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/contact">Contact Us</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-medium transition-smooth border-border">
-              <CardContent className="p-6 text-center space-y-4">
-                <Users className="w-8 h-8 mx-auto text-primary" />
-                <h4 className="font-semibold">Join Our Community</h4>
-                <p className="text-sm text-muted-foreground">
-                  Connect with other students and parents in our forums
-                </p>
-                <Button variant="outline" size="sm" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-medium transition-smooth border-border">
-              <CardContent className="p-6 text-center space-y-4">
-                <GraduationCap className="w-8 h-8 mx-auto text-primary" />
-                <h4 className="font-semibold">Resource Center</h4>
-                <p className="text-sm text-muted-foreground">
-                  Browse our guides and blog for detailed information
-                </p>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/resources/blog">Explore Resources</Link>
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-6">
-          <h2 className="text-white">Stay Updated</h2>
-          <p className="text-xl text-primary-foreground/90">
-            Subscribe to our newsletter for platform updates, new partnerships, and admission insights.
-          </p>
-          <Button variant="secondary" size="lg">
-            Subscribe to Updates
-          </Button>
+          
         </div>
       </section>
     </div>

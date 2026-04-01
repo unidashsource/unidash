@@ -4,15 +4,29 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, GraduationCap, Building } from "lucide-react";
+import { ArrowRight, Users, GraduationCap, Building, ChevronRight, CheckCircle2 } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function HomePage() {
   const universityLogos = [
-    "University A",
+    "University of Delhi",
     "VIT Vellore", 
     "Manipal Academy",
     "Ashoka University",
-    "Shiv Nadar University"
+    "Shiv Nadar Institution"
   ];
 
   const steps = [
@@ -44,155 +58,189 @@ export default function HomePage() {
       description: "A streamlined, transparent, and organized application experience.",
       icon: Users,
       link: "/about/students",
-      color: "bg-blue-50 text-blue-600"
+      color: "bg-blue-50 text-primary border-blue-100"
     },
     {
       title: "High Schools", 
       description: "A powerful administrative tool for counselors to manage and track student applications.",
       icon: GraduationCap,
       link: "/about/schools",
-      color: "bg-green-50 text-green-600"
+      color: "bg-slate-50 text-slate-800 border-slate-200"
     },
     {
       title: "Universities",
       description: "A platform to attract a wider pool of qualified applicants and streamline admissions.",
       icon: Building,
       link: "/about/universities", 
-      color: "bg-purple-50 text-purple-600"
+      color: "bg-neutral-50 text-neutral-800 border-neutral-200"
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto container-padding section-padding">
-          <div className="text-center space-y-8 max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-4">
-              Launching Soon
-            </Badge>
-            <h1 className="text-white text-balance">
-              The Smarter Way to Apply to India's Top Universities
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 text-balance max-w-3xl mx-auto">
-              Unidash is the centralized application platform for Indian higher education. 
-              Use one application to apply to hundreds of universities, saving time and reducing errors.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button variant="secondary" size="lg" className="text-lg">
-                Get Early Access
+    <div className="min-h-screen bg-[#F8FAFC]">
+      {/* Premium Corporate Hero Section */}
+      <section className="relative overflow-hidden bg-white border-b border-slate-200 pt-24 pb-32">
+        {/* Subtle dot pattern background for texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+        
+        <div className="relative max-w-7xl mx-auto container-padding">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="text-center space-y-8 max-w-4xl mx-auto"
+          >
+            <motion.div variants={fadeIn}>
+              <Badge variant="outline" className="mb-6 px-4 py-1 text-sm border-primary/20 bg-primary/5 text-primary">
+                Unidash Platform Launching 2026
+              </Badge>
+            </motion.div>
+            
+            <motion.h1 variants={fadeIn} className="text-balance text-slate-900 font-extrabold tracking-tight">
+              The Standardized Application <br className="hidden sm:block" />
+              for Indian Higher Education
+            </motion.h1>
+            
+            <motion.p variants={fadeIn} className="text-xl text-slate-600 text-balance max-w-2xl mx-auto font-medium">
+              A single, secure platform connecting students with premier institutions across the country. Simplify your journey from discovery to enrollment.
+            </motion.p>
+            
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
+              <Button size="lg" className="text-base h-12 px-8 shadow-md">
+                Create an Account
               </Button>
-              <div className="flex gap-4 text-sm text-white/80">
-                <Link href="/about/schools" className="hover:text-white transition-smooth">
-                  For High School Students
+              <Button variant="outline" size="lg" className="text-base h-12 px-8 bg-white" asChild>
+                <Link href="/about/students">
+                  Explore Requirements <ChevronRight className="ml-2 w-4 h-4" />
                 </Link>
-                <Link href="/about/universities" className="hover:text-white transition-smooth">
-                  For Universities
-                </Link>
-              </div>
-            </div>
-          </div>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Partner Bar */}
-      <section className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto container-padding py-12">
-          <div className="text-center space-y-6">
-            <h3 className="text-lg font-medium text-muted-foreground">
-              Our Prospective University Network Includes:
-            </h3>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              {universityLogos.map((university, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center mb-2 mx-auto">
-                    <span className="text-xl font-bold text-muted-foreground">
-                      {university.split(' ').map(word => word[0]).join('')}
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground max-w-24 mx-auto">{university}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-balance">A More Efficient Application Process</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Streamline your university applications with our comprehensive platform
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <Card key={index} className="relative overflow-hidden group hover:shadow-medium transition-smooth border-border">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto primary-gradient rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    {step.number}
-                  </div>
-                  <h4 className="text-xl font-semibold">{step.title}</h4>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </CardContent>
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-muted-foreground" />
-                  </div>
-                )}
-              </Card>
+      {/* Partner Trust Bar */}
+      <section className="bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto container-padding py-10">
+          <p className="text-sm font-semibold uppercase tracking-wider text-slate-500 text-center mb-8">
+            Trusted by Prospective Partner Institutions
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-80">
+            {universityLogos.map((university, index) => (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                key={index} 
+                className="text-slate-800 font-semibold text-lg tracking-tight"
+              >
+                {university}
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Audience Section */}
-      <section className="section-padding">
+      {/* Structured "How it Works" - Bento/Linear style */}
+      <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-balance">A Solution for the Entire Admissions Ecosystem</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Designed to serve students, schools, and universities with tailored solutions
+          <div className="space-y-4 mb-20 text-center">
+            <h2 className="text-slate-900">A Streamlined Admissions Process</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              We eliminate redundancy by standardizing requirements and managing data securely in one place.
+            </p>
+          </div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {steps.map((step, index) => (
+              <motion.div variants={fadeIn} key={index}>
+                <Card className="h-full border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 relative group overflow-hidden bg-white">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-slate-100 group-hover:bg-primary transition-colors duration-300"></div>
+                  <CardContent className="p-8 pt-10">
+                    <span className="text-5xl font-extrabold text-slate-100 absolute top-4 right-4 pointer-events-none transition-smooth group-hover:text-primary/5">
+                      {step.number}
+                    </span>
+                    <h4 className="text-lg font-bold text-slate-900 mb-3 relative z-10">{step.title}</h4>
+                    <p className="text-slate-600 leading-relaxed text-sm relative z-10">{step.description}</p>
+                    <div className="mt-8 pt-4 border-t border-slate-100 flex items-center text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
+                      Learn more <ArrowRight className="w-4 h-4 ml-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Audience Section */}
+      <section className="section-padding bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto container-padding">
+          <div className="mb-16">
+            <h2 className="text-slate-900 mb-4">Tailored Portals for Every Stakeholder</h2>
+            <p className="text-xl text-slate-600 max-w-2xl">
+              Unidash offers dedicated interfaces designed specifically for the unique needs of applicants, counselors, and admission teams.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {audiences.map((audience, index) => (
-              <Card key={index} className="group hover:shadow-large transition-smooth cursor-pointer border-border">
-                <CardContent className="p-8 space-y-6">
-                  <div className={`w-16 h-16 rounded-lg flex items-center justify-center ${audience.color}`}>
-                    <audience.icon className="w-8 h-8" />
-                  </div>
-                  <div className="space-y-3">
-                    <h4 className="text-xl font-semibold">{audience.title}</h4>
-                    <p className="text-muted-foreground">{audience.description}</p>
-                  </div>
-                  <Link href={audience.link} className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-smooth">
-                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </CardContent>
-              </Card>
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                whileHover={{ y: -5 }}
+              >
+                <Link href={audience.link} className="block h-full">
+                  <Card className={`h-full border shadow-sm hover:shadow-lg transition-all duration-200 bg-white`}>
+                    <CardContent className="p-8 space-y-6">
+                      <div className={`w-14 h-14 rounded-lg flex items-center justify-center border ${audience.color}`}>
+                        <audience.icon className="w-7 h-7" />
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-bold text-slate-900">{audience.title}</h4>
+                        <p className="text-slate-600 leading-relaxed text-sm">{audience.description}</p>
+                      </div>
+                      <div className="pt-4 flex items-center text-primary font-semibold text-sm">
+                        View Portal Info <ChevronRight className="w-4 h-4 ml-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto container-padding text-center space-y-8">
-          <h2 className="text-white text-balance">
-            The Future of Indian University Admissions is Launching Soon
+      {/* Corporate Final CTA Section */}
+      <section className="py-24 bg-primary relative overflow-hidden">
+        {/* Subtle background element */}
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[500px] h-[500px] rounded-full bg-white opacity-5 blur-3xl"></div>
+        <div className="max-w-5xl mx-auto container-padding text-center space-y-8 relative z-10">
+          <h2 className="text-white text-3xl md:text-5xl font-bold tracking-tight">
+            Ready to Standardize Your Admissions?
           </h2>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Join our waitlist to be notified at launch and receive exclusive early access benefits.
+          <p className="text-xl text-white/80 max-w-2xl mx-auto font-medium">
+            Take the first step towards a unified, secure, and professional application experience.
           </p>
-          <Button variant="secondary" size="lg">
-            Join the Waitlist
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <Button variant="secondary" size="lg" className="h-12 px-8 text-base">
+              Join the Platform
+            </Button>
+            <Button variant="outline" size="lg" className="h-12 px-8 text-base bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white">
+              Contact Sales
+            </Button>
+          </div>
         </div>
       </section>
     </div>

@@ -3,7 +3,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Upload, BarChart3, Star } from "lucide-react";
+import { Users, Upload, BarChart3, Star, Server, CheckSquare } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function SchoolsPage() {
   const functionalities = [
@@ -15,7 +29,7 @@ export default function SchoolsPage() {
     {
       icon: Upload,
       title: "Efficient Document Submission",
-      description: "Upload official transcripts and letters of recommendation in bulk. A common recommendation form can be applied to multiple university applications for a single student."
+      description: "Upload official transcripts and letters of recommendation in bulk. A common recommendation form can be applied to multiple university applications."
     },
     {
       icon: BarChart3,
@@ -28,121 +42,178 @@ export default function SchoolsPage() {
     "Early access to the platform before public launch",
     "Direct input on feature development and UI/UX feedback",
     "Complimentary lifetime license for the Counselor Portal",
-    "Priority customer support and onboarding",
-    "Co-marketing opportunities and case study features"
+    "Priority customer support and specialized training sessions",
+    "Co-marketing opportunities and verified network badge"
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#F8FAFC]">
       {/* Hero Section */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-6">
-          <h1>An Administrative Platform for High School Counselors</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed text-balance">
-            The Unidash Counselor Portal is a complimentary tool designed to streamline 
-            administrative tasks and provide data-driven insights for your counseling department.
-          </p>
+      <section className="bg-white border-b border-slate-200 py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 [clip-path:polygon(10%_0%,100%_0,100%_100%,0%_100%)] opacity-50 hidden lg:block"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+        <div className="max-w-4xl mx-auto container-padding text-center space-y-6 relative z-10">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
+            <motion.h1 variants={fadeIn} className="text-slate-900 font-extrabold tracking-tight text-4xl sm:text-5xl">
+              An Administrative Platform <br/> for High School Counselors
+            </motion.h1>
+            <motion.p variants={fadeIn} className="text-xl text-slate-600 leading-relaxed text-balance max-w-3xl mx-auto font-medium">
+              The Unidash Counselor Portal is a powerful, integrated tool designed to streamline administrative workflows and provide actionable, data-driven insights.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Core Functionalities */}
-      <section className="section-padding">
+      <section className="section-padding bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center space-y-4 mb-16">
-            <h2>Core Functionalities</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Powerful tools to help counselors manage student applications efficiently
+            <h2 className="text-slate-900">Core Functionalities</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Built for performance and reliability at national scale.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {functionalities.map((functionality, index) => (
-              <Card key={index} className="hover:shadow-medium transition-smooth border-border">
-                <CardContent className="p-8 space-y-4 text-center">
-                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
-                    <functionality.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="text-xl font-semibold">{functionality.title}</h4>
-                  <p className="text-muted-foreground">{functionality.description}</p>
-                </CardContent>
-              </Card>
+              <motion.div variants={fadeIn} key={index}>
+                <Card className="hover:shadow-md transition-all duration-300 border-slate-200 bg-white h-full">
+                  <CardContent className="p-8 pt-10 text-center space-y-5">
+                    <div className="w-16 h-16 mx-auto bg-slate-100 border border-slate-200 rounded-2xl flex items-center justify-center">
+                      <functionality.icon className="w-8 h-8 text-slate-800" />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900">{functionality.title}</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">{functionality.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Counselor Dashboard Visual representation */}
+      <section className="section-padding bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto container-padding">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-slate-900">Counselor Dashboard Visualization</h2>
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                A unified interface representing the tools available in the portal.
+              </p>
+            </div>
+
+            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-300 to-slate-200"></div>
+              
+              <div className="flex justify-between items-center mb-8 border-b border-slate-200 pb-4">
+                <div className="flex gap-2 items-center">
+                  <Server className="w-5 h-5 text-slate-400" />
+                  <span className="font-bold text-slate-700">Administrator Console</span>
+                </div>
+                <Badge variant="outline" className="bg-white text-slate-500 border-slate-200">Verified School Network</Badge>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <p className="text-sm font-bold text-slate-500 mb-1 uppercase tracking-wider">Active Students</p>
+                  <div className="text-4xl font-extrabold text-slate-900">247</div>
+                </div>
+                <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <p className="text-sm font-bold text-slate-500 mb-1 uppercase tracking-wider">Applications Processed</p>
+                  <div className="text-4xl font-extrabold text-blue-600">1,456</div>
+                </div>
+                <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <p className="text-sm font-bold text-slate-500 mb-1 uppercase tracking-wider">Placement Target</p>
+                  <div className="text-4xl font-extrabold text-green-600">89%</div>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="font-bold text-slate-900">Recent Automated Submissions</h4>
+                <div className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+                  {[
+                    { student: "Priya Sharma", uni: "VIT Vellore", status: "Transcripts Uploaded" },
+                    { student: "Rahul Kumar", uni: "SRM University", status: "Evaluation Pending" },
+                    { student: "Ananya Gupta", uni: "Manipal Academy", status: "Fully Processed" }
+                  ].map((row, index) => (
+                    <div key={index} className="flex justify-between items-center p-4 hover:bg-slate-50 transition-colors">
+                      <div className="flex items-center gap-3">
+                        <CheckSquare className="w-5 h-5 text-green-500" />
+                        <div>
+                          <span className="font-bold text-slate-900 block text-sm">{row.student}</span>
+                          <span className="text-xs text-slate-500 font-medium">{row.uni}</span>
+                        </div>
+                      </div>
+                      <Badge className="bg-slate-100 text-slate-700 hover:bg-slate-200 border-none">{row.status}</Badge>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Pioneer Program */}
-      <section className="section-padding bg-muted/30">
+      <section className="py-24 bg-[#F1F5F9] relative overflow-hidden">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <Star className="w-6 h-6 text-secondary" />
-                <Badge variant="secondary">Exclusive Program</Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="inline-flex items-center space-x-2 mb-4 bg-white border border-slate-200 px-3 py-1.5 rounded-full shadow-sm">
+                <Star className="w-4 h-4 text-primary" />
+                <span className="text-sm font-bold text-slate-700">Enterprise Partnership</span>
               </div>
-              <h2>The Pioneer School Program</h2>
-              <p className="text-xl text-muted-foreground">
-                We invite institutions to join our Pioneer Program for early access, direct input 
-                on feature development, and a complimentary lifetime license for the Counselor Portal.
+              <h2 className="text-slate-900">The Pioneer School Program</h2>
+              <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                We are carefully selecting forward-thinking institutions to join our Pioneer Program. Participants receive early access, direct input into the platform's compliance and feature roadmap, and a complimentary perpetual license for the Counselor Portal.
               </p>
-              <Button variant="secondary" size="lg">
-                Request a Demo for Your School
-              </Button>
-            </div>
-            <Card className="shadow-medium border-border">
-              <CardContent className="p-8 space-y-6">
-                <h4 className="text-xl font-semibold">Pioneer Benefits Include:</h4>
-                <div className="space-y-4">
-                  {pioneerBenefits.map((benefit, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground">{benefit}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Dashboard Preview */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center space-y-4 mb-16">
-            <h2>Counselor Dashboard Preview</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Get a glimpse of the comprehensive tools available in the Counselor Portal
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-xl shadow-large border border-border">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center p-6 bg-blue-50 rounded-lg border border-blue-100">
-                <div className="text-3xl font-bold text-blue-600 mb-2">247</div>
-                <p className="text-sm text-blue-600 font-medium">Total Students</p>
+              <div className="pt-4">
+                <Button size="lg" className="h-12 px-8 text-base shadow-md">
+                  Request an Institutional Demo
+                </Button>
               </div>
-              <div className="text-center p-6 bg-green-50 rounded-lg border border-green-100">
-                <div className="text-3xl font-bold text-green-600 mb-2">1,456</div>
-                <p className="text-sm text-green-600 font-medium">Applications Submitted</p>
-              </div>
-              <div className="text-center p-6 bg-purple-50 rounded-lg border border-purple-100">
-                <div className="text-3xl font-bold text-purple-600 mb-2">89%</div>
-                <p className="text-sm text-purple-600 font-medium">Acceptance Rate</p>
-              </div>
-            </div>
+            </motion.div>
             
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Recent Applications</h4>
-              <div className="space-y-3">
-                {["Priya Sharma - VIT Vellore", "Rahul Kumar - SRM University", "Ananya Gupta - Manipal Academy"].map((student, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                    <span className="font-medium text-foreground">{student}</span>
-                    <Badge variant="outline">Submitted</Badge>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card className="shadow-lg border-slate-200 bg-white">
+                <CardContent className="p-8 md:p-10 space-y-6">
+                  <h4 className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">Pioneer Benefits Include:</h4>
+                  <div className="space-y-5">
+                    {pioneerBenefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start space-x-4">
+                        <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-100">
+                          <CheckSquare className="w-3.5 h-3.5 text-primary" />
+                        </div>
+                        <p className="text-slate-700 font-medium text-sm leading-relaxed">{benefit}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>

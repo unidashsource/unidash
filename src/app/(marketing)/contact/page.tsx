@@ -12,172 +12,143 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Mail, MapPin, Phone, Clock, Send } from "lucide-react";
-import Link from "next/link";
+import { Mail, MapPin, Phone, Clock, Send, Globe, Building2 } from "lucide-react";
 
 export default function ContactPage() {
   const contactMethods = [
-    {
-      title: "General Inquiries",
-      email: "contact@unidash.co.in",
-      description: "For general questions about the platform and services",
-      icon: Mail
-    },
-    {
-      title: "University Partnerships", 
-      email: "partnerships@unidash.co.in",
-      description: "For universities interested in joining our platform",
-      icon: Mail
-    },
-    {
-      title: "Press Inquiries",
-      email: "press@unidash.co.in", 
-      description: "For media relations and press coverage",
-      icon: Mail
-    }
+    { title: "General Inquiries", email: "contact@unidash.co.in", desc: "General platform questions" },
+    { title: "University Partner", email: "partnerships@unidash.co.in", desc: "Institutional onboarding" },
+    { title: "Press Desk", email: "press@unidash.co.in", desc: "Media & PR relations" }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-6">
-          <h1>Contact Us</h1>
-          <p className="text-xl text-muted-foreground text-balance">
-            Have questions about Unidash? We&apos;d love to hear from you. 
-            Get in touch and we&apos;ll respond as soon as possible.
+    <div className="min-h-screen bg-[#F8FAFC]">
+      {/* Hero with split map/texture background */}
+      <section className="relative pt-24 pb-32 bg-slate-900 border-b border-border overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+        <div className="absolute top-0 right-0 p-32 opacity-10 pointer-events-none">
+          <Globe className="w-96 h-96 text-white" />
+        </div>
+        <div className="max-w-4xl mx-auto container-padding text-center space-y-6 relative z-10">
+          <h1 className="text-white text-4xl sm:text-6xl font-extrabold tracking-tight">Contact Enterprise</h1>
+          <p className="text-xl text-slate-300 text-balance max-w-2xl mx-auto font-medium">
+            Let's discuss how Unidash can transform the admissions workflow for your institution.
           </p>
         </div>
       </section>
 
-      {/* Contact Methods */}
-      <section className="section-padding">
+      {/* Embedded Form + Info overlapping the dark hero */}
+      <section className="relative -mt-16 pb-24 z-20">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
-            <p className="text-xl text-muted-foreground text-balance">
-              Choose the best way to reach us based on your inquiry
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {contactMethods.map((method, index) => (
-              <Card key={index} className="hover:shadow-medium transition-smooth border-border">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
-                    <method.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h4 className="font-semibold">{method.title}</h4>
-                  <p className="text-sm text-muted-foreground">{method.description}</p>
-                  <a 
-                    href={`mailto:${method.email}`}
-                    className="inline-block text-primary hover:text-primary/80 font-medium transition-smooth"
-                  >
-                    {method.email}
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form and Info */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="shadow-medium border-border">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* The Contact Form */}
+            <Card className="lg:col-span-8 shadow-2xl border-slate-200 bg-white rounded-2xl overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-primary to-blue-400 w-full"></div>
+              <CardContent className="p-8 md:p-12">
+                <h3 className="text-3xl font-extrabold text-slate-900 mb-2">Send an Inquiry</h3>
+                <p className="text-slate-500 font-medium mb-8">Fill out the form below. Direct university inquiries receive priority routing.</p>
+                
                 <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="Enter your first name" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2.5">
+                      <Label htmlFor="firstName" className="font-bold text-slate-700">First Name</Label>
+                      <Input id="firstName" placeholder="John" className="h-12 bg-slate-50 border-slate-200 shadow-sm" />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Enter your last name" />
+                    <div className="space-y-2.5">
+                      <Label htmlFor="lastName" className="font-bold text-slate-700">Last Name</Label>
+                      <Input id="lastName" placeholder="Doe" className="h-12 bg-slate-50 border-slate-200 shadow-sm" />
                     </div>
                   </div>
                   
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2.5">
+                      <Label htmlFor="email" className="font-bold text-slate-700">Official Work Email</Label>
+                      <Input id="email" type="email" placeholder="john.doe@university.edu" className="h-12 bg-slate-50 border-slate-200 shadow-sm" />
+                    </div>
+                    <div className="space-y-2.5">
+                      <Label htmlFor="role" className="font-bold text-slate-700">Institutional Role</Label>
+                      <Select>
+                        <SelectTrigger className="h-12 bg-slate-50 border-slate-200 shadow-sm">
+                          <SelectValue placeholder="Select relevant role" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white">
+                          <SelectItem value="university">University Admissions Dept.</SelectItem>
+                          <SelectItem value="school">High School Counselor</SelectItem>
+                          <SelectItem value="parent">Student/Parent</SelectItem>
+                          <SelectItem value="media">Press/Media</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2.5">
+                    <Label htmlFor="organization" className="font-bold text-slate-700">Organization Name</Label>
+                    <Input id="organization" placeholder="e.g. Delhi Public School..." className="h-12 bg-slate-50 border-slate-200 shadow-sm" />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="role">Role</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="student">Student</SelectItem>
-                        <SelectItem value="parent">Parent</SelectItem>
-                        <SelectItem value="school-counselor">School Counselor</SelectItem>
-                        <SelectItem value="university-rep">University Representative</SelectItem>
-                        <SelectItem value="educator">Educator</SelectItem>
-                        <SelectItem value="media">Media/Press</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                  <div className="space-y-2.5">
+                    <Label htmlFor="message" className="font-bold text-slate-700">Message Details</Label>
                     <Textarea 
                       id="message" 
-                      placeholder="Tell us how we can help you..."
-                      className="min-h-32"
+                      placeholder="How can we assist you with our platform?"
+                      className="min-h-[160px] bg-slate-50 border-slate-200 shadow-sm resize-y"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full">
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                  <Button type="submit" size="lg" className="w-full text-base font-bold shadow-md hover:shadow-lg transition-all h-14">
+                    Securely Submit Inquiry <Send className="w-5 h-5 ml-2" />
                   </Button>
                 </form>
               </CardContent>
             </Card>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <Card className="shadow-medium border-border">
-                <CardContent className="p-8 space-y-6">
-                  <h3 className="text-2xl font-semibold">Contact Information</h3>
+            {/* Sidebar Info */}
+            <div className="lg:col-span-4 space-y-6">
+              
+              <Card className="shadow-lg border-slate-200 bg-white rounded-2xl">
+                <CardContent className="p-8 space-y-8">
+                  <h3 className="text-xl font-extrabold text-slate-900 border-b border-slate-100 pb-4">Corporate Office</h3>
                   
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center flex-shrink-0 border border-slate-100">
+                        <Building2 className="w-5 h-5 text-slate-800" />
+                      </div>
                       <div>
-                        <h4 className="font-medium">Corporate Address</h4>
-                        <p className="text-muted-foreground">
-                          Unidash Technologies Pvt. Ltd.<br />
-                          Sri City, Andhra Pradesh, 517646<br />
-                          India
+                        <h4 className="font-bold text-slate-900 text-sm mb-1">Unidash Technologies H.Q.</h4>
+                        <p className="text-slate-500 text-sm font-medium leading-relaxed">
+                          Innovation Bay, Central St.<br />
+                          Sri City, AP 517646<br />India
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3">
-                      <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 border border-blue-100">
+                        <Mail className="w-5 h-5 text-primary" />
+                      </div>
                       <div>
-                        <h4 className="font-medium">Response Time</h4>
-                        <p className="text-muted-foreground">
-                          We typically respond within 24-48 hours during business days.
-                        </p>
+                        <h4 className="font-bold text-slate-900 text-sm mb-1">Email Departments</h4>
+                        <ul className="space-y-2 mt-2">
+                          {contactMethods.map((m, i) => (
+                            <li key={i} className="text-sm">
+                              <span className="font-bold text-slate-600 block">{m.title}</span>
+                              <a href={`mailto:${m.email}`} className="text-primary hover:underline font-medium">{m.email}</a>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3">
-                      <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center flex-shrink-0 border border-slate-100">
+                        <Clock className="w-5 h-5 text-slate-800" />
+                      </div>
                       <div>
-                        <h4 className="font-medium">Phone Support</h4>
-                        <p className="text-muted-foreground">
-                          Phone support will be available after platform launch. 
-                          For now, please use email or the contact form.
+                        <h4 className="font-bold text-slate-900 text-sm mb-1">SLA Guidelines</h4>
+                        <p className="text-slate-500 text-sm font-medium leading-relaxed">
+                          Enterprise inquiries are typically processed within 12 business hours.
                         </p>
                       </div>
                     </div>
@@ -185,40 +156,8 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="shadow-medium border-border">
-                <CardContent className="p-8 space-y-4">
-                  <h4 className="text-xl font-semibold">Quick Links</h4>
-                  <div className="space-y-3">
-                    <Link href="/about/students" className="block text-primary hover:text-primary/80 transition-smooth">
-                      Information for Students & Parents →
-                    </Link>
-                    <Link href="/about/schools" className="block text-primary hover:text-primary/80 transition-smooth">
-                      Information for High Schools →
-                    </Link>
-                    <Link href="/about/universities" className="block text-primary hover:text-primary/80 transition-smooth">
-                      University Partnership Information →
-                    </Link>
-                    <Link href="/faq" className="block text-primary hover:text-primary/80 transition-smooth">
-                      Frequently Asked Questions →
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto container-padding text-center space-y-6">
-          <h2 className="text-white">Ready to Transform University Admissions?</h2>
-          <p className="text-xl text-primary-foreground/90">
-            Join thousands of students, schools, and universities preparing for the future of admissions.
-          </p>
-          <Button variant="secondary" size="lg">
-            Join the Waitlist
-          </Button>
         </div>
       </section>
     </div>
