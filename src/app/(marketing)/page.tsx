@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-primary/10">
       {/* 1. Immersive Enterprise Hero */}
-      <section className="relative overflow-hidden bg-white border-b border-slate-200 pt-24 pb-32">
+      <section className="relative overflow-hidden bg-white border-b border-slate-200 pt-6 lg:pt-10 pb-20 lg:pb-32">
         {/* Subtle grid background for density */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60"></div>
         

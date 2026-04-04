@@ -119,23 +119,23 @@ export const Navbar = () => {
             <nav className="flex flex-col p-6 space-y-6">
               <div className="space-y-4">
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">About Unidash</p>
-                <Link href="/about/overview" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Overview</Link>
-                <Link href="/about/students" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Students & Parents</Link>
-                <Link href="/about/schools" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Counselors</Link>
-                <Link href="/about/universities" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Universities</Link>
+                <Link href="/about/overview" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">Overview</Link>
+                <Link href="/about/students" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Students & Parents</Link>
+                <Link href="/about/schools" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Counselors</Link>
+                <Link href="/about/universities" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Universities</Link>
               </div>
               
               <div className="space-y-4">
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Resources</p>
-                <Link href="/resources/blog" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Blog & Insights</Link>
-                <Link href="/resources/guides" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Admission Guides</Link>
-                <Link href="/faq" className="block text-slate-800 font-semibold hover:text-primary transition-colors">FAQ</Link>
-                <Link href="/contact" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Contact</Link>
+                <Link href="/resources/blog" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">Blog & Insights</Link>
+                <Link href="/resources/guides" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">Admission Guides</Link>
+                <Link href="/faq" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">FAQ</Link>
+                <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-slate-800 font-semibold hover:text-primary transition-colors">Contact</Link>
               </div>
 
               <div className="pt-6 border-t border-slate-200/50 flex flex-col space-y-3">
-                <Button variant="outline" className="w-full font-bold border-slate-300 rounded-xl">Sign In</Button>
-                <Button className="w-full font-bold bg-primary text-white rounded-xl shadow-soft">Create Account</Button>
+                <Button variant="outline" onClick={() => setIsOpen(false)} className="w-full font-bold border-slate-300 rounded-xl">Sign In</Button>
+                <Button onClick={() => setIsOpen(false)} className="w-full font-bold bg-primary text-white rounded-xl shadow-soft">Create Account</Button>
               </div>
             </nav>
           </div>
