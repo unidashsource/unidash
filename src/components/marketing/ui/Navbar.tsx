@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,63 +19,57 @@ export const Navbar = () => {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto container-padding">
-        <div className="flex items-center justify-between h-20">
+    <header className="sticky top-0 z-50 pt-4 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+      <div className="max-w-7xl mx-auto glass-effect rounded-2xl shadow-soft border border-slate-200/60">
+        <div className="flex items-center justify-between h-16 px-4 md:px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <span className="text-primary font-extrabold text-xl">U</span>
+          <Link href="/" className="flex items-center space-x-2.5 group">
+            <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-sm group-hover:shadow-md transition-smooth">
+              <span className="text-white font-bold text-lg leading-none">U</span>
             </div>
-            <span className="text-2xl font-extrabold text-slate-900 tracking-tight">Unidash</span>
+            <span className="text-xl font-bold tracking-tight text-slate-900">Unidash</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-1">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1.5 text-slate-600 font-semibold hover:text-slate-900 transition-colors outline-none py-2">
+              <DropdownMenuTrigger className="group flex items-center space-x-1 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-smooth outline-none px-3 py-2 rounded-lg hover:bg-slate-100/80 data-[state=open]:bg-slate-100/80 data-[state=open]:text-slate-900">
                 <span>About</span>
-                <ChevronDown className="w-4 h-4 text-slate-400" />
+                <ChevronDown className="w-4 h-4 text-slate-400 group-data-[state=open]:rotate-180 transition-transform duration-200" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 p-2 bg-white border border-slate-200 shadow-xl rounded-xl">
-                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
-                  <Link href="/about/overview" className="w-full">
-                    <div className="font-semibold text-slate-800">Overview</div>
-                    <div className="text-xs text-slate-500 mt-0.5">Learn about our mission</div>
+              <DropdownMenuContent className="w-64 p-2 bg-white/95 backdrop-blur-md border border-slate-200 shadow-large rounded-xl mt-2 animate-in fade-in zoom-in-95 duration-200">
+                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-smooth focus:bg-slate-50 focus:text-slate-900 group">
+                  <Link href="/about/overview" className="w-full flex flex-col">
+                    <span className="font-semibold text-slate-900 group-hover:text-primary transition-colors">Overview</span>
+                    <span className="text-xs text-slate-500 mt-0.5">Learn about our core mission</span>
                   </Link>
                 </DropdownMenuItem>
-                <div className="h-px bg-slate-100 my-1"></div>
-                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
-                  <Link href="/about/students" className="w-full">
-                    <div className="font-semibold text-slate-800">For Students & Parents</div>
-                  </Link>
+                <div className="h-px bg-slate-100 my-1 mx-2"></div>
+                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-smooth focus:bg-slate-50 focus:text-slate-900">
+                  <Link href="/about/students" className="w-full font-semibold text-slate-800">For Students & Parents</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
-                  <Link href="/about/schools" className="w-full">
-                    <div className="font-semibold text-slate-800">For Counselors</div>
-                  </Link>
+                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-smooth focus:bg-slate-50 focus:text-slate-900">
+                  <Link href="/about/schools" className="w-full font-semibold text-slate-800">For Counselors</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
-                  <Link href="/about/universities" className="w-full">
-                    <div className="font-semibold text-slate-800">For Universities</div>
-                  </Link>
+                <DropdownMenuItem asChild className="p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-smooth focus:bg-slate-50 focus:text-slate-900">
+                  <Link href="/about/universities" className="w-full font-semibold text-slate-800">For Universities</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1.5 text-slate-600 font-semibold hover:text-slate-900 transition-colors outline-none py-2">
+              <DropdownMenuTrigger className="group flex items-center space-x-1 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-smooth outline-none px-3 py-2 rounded-lg hover:bg-slate-100/80 data-[state=open]:bg-slate-100/80 data-[state=open]:text-slate-900">
                 <span>Resources</span>
-                <ChevronDown className="w-4 h-4 text-slate-400" />
+                <ChevronDown className="w-4 h-4 text-slate-400 group-data-[state=open]:rotate-180 transition-transform duration-200" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 p-2 bg-white border border-slate-200 shadow-xl rounded-xl">
-                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
+              <DropdownMenuContent className="w-56 p-2 bg-white/95 backdrop-blur-md border border-slate-200 shadow-large rounded-xl mt-2 animate-in fade-in zoom-in-95 duration-200">
+                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-smooth hover:bg-slate-50 focus:bg-slate-50 focus:text-slate-900">
                   <Link href="/resources/blog" className="w-full font-semibold text-slate-800">Blog & Insights</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
+                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-smooth hover:bg-slate-50 focus:bg-slate-50 focus:text-slate-900">
                   <Link href="/resources/guides" className="w-full font-semibold text-slate-800">Admission Guides</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-colors focus:bg-slate-50 focus:text-slate-900 data-[highlighted]:bg-slate-50">
+                <DropdownMenuItem asChild className="p-3 rounded-lg cursor-pointer transition-smooth hover:bg-slate-50 focus:bg-slate-50 focus:text-slate-900">
                   <Link href="/resources/university-search" className="w-full font-semibold text-slate-800">University Search</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -83,16 +77,16 @@ export const Navbar = () => {
 
             <Link 
               href="/faq" 
-              className={`font-semibold transition-colors py-2 ${
-                isActive("/faq") ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              className={`text-sm font-semibold transition-smooth px-3 py-2 rounded-lg ${
+                isActive("/faq") ? "text-primary bg-primary/5" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
               }`}
             >
               FAQ
             </Link>
             <Link 
               href="/contact" 
-              className={`font-semibold transition-colors py-2 ${
-                isActive("/contact") ? "text-primary" : "text-slate-600 hover:text-slate-900"
+              className={`text-sm font-semibold transition-smooth px-3 py-2 rounded-lg ${
+                isActive("/contact") ? "text-primary bg-primary/5" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
               }`}
             >
               Contact
@@ -100,11 +94,11 @@ export const Navbar = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login" className="text-slate-600 hover:text-slate-900 font-bold transition-colors">
+          <div className="hidden md:flex items-center space-x-3">
+            <Link href="/login" className="text-sm text-slate-600 hover:text-slate-900 font-bold transition-smooth px-2 py-2">
               Sign In
             </Link>
-            <Button className="font-bold shadow-md hover:shadow-lg transition-all">
+            <Button className="rounded-full bg-primary text-white shadow-soft hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 font-semibold px-6">
               Create Account
             </Button>
           </div>
@@ -112,35 +106,36 @@ export const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+            className="md:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 rounded-lg transition-smooth"
+            aria-label="Toggle Menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Dropdown */}
         {isOpen && (
-          <div className="md:hidden py-6 border-t border-slate-200 bg-white absolute left-0 w-full px-6 shadow-xl">
-            <nav className="flex flex-col space-y-6">
-              <div className="space-y-3">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">About Unidash</p>
-                <Link href="/about/overview" className="block text-slate-800 font-semibold hover:text-primary">Overview</Link>
-                <Link href="/about/students" className="block text-slate-800 font-semibold hover:text-primary">For Students & Parents</Link>
-                <Link href="/about/schools" className="block text-slate-800 font-semibold hover:text-primary">For Counselors</Link>
-                <Link href="/about/universities" className="block text-slate-800 font-semibold hover:text-primary">For Universities</Link>
+          <div className="md:hidden border-t border-slate-200/60 bg-white/50 backdrop-blur-lg rounded-b-2xl animate-in slide-in-from-top-2 duration-200 overflow-hidden">
+            <nav className="flex flex-col p-6 space-y-6">
+              <div className="space-y-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">About Unidash</p>
+                <Link href="/about/overview" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Overview</Link>
+                <Link href="/about/students" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Students & Parents</Link>
+                <Link href="/about/schools" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Counselors</Link>
+                <Link href="/about/universities" className="block text-slate-800 font-semibold hover:text-primary transition-colors">For Universities</Link>
               </div>
               
-              <div className="space-y-3">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Resources</p>
-                <Link href="/resources/blog" className="block text-slate-800 font-semibold hover:text-primary">Blog & Insights</Link>
-                <Link href="/resources/guides" className="block text-slate-800 font-semibold hover:text-primary">Admission Guides</Link>
-                <Link href="/faq" className="block text-slate-800 font-semibold hover:text-primary">FAQ</Link>
-                <Link href="/contact" className="block text-slate-800 font-semibold hover:text-primary">Contact</Link>
+              <div className="space-y-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Resources</p>
+                <Link href="/resources/blog" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Blog & Insights</Link>
+                <Link href="/resources/guides" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Admission Guides</Link>
+                <Link href="/faq" className="block text-slate-800 font-semibold hover:text-primary transition-colors">FAQ</Link>
+                <Link href="/contact" className="block text-slate-800 font-semibold hover:text-primary transition-colors">Contact</Link>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex flex-col space-y-3">
-                <Button variant="outline" className="w-full font-bold border-slate-300">Sign In</Button>
-                <Button className="w-full font-bold">Create Account</Button>
+              <div className="pt-6 border-t border-slate-200/50 flex flex-col space-y-3">
+                <Button variant="outline" className="w-full font-bold border-slate-300 rounded-xl">Sign In</Button>
+                <Button className="w-full font-bold bg-primary text-white rounded-xl shadow-soft">Create Account</Button>
               </div>
             </nav>
           </div>
